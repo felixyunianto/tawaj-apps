@@ -1,11 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:tawaj/app/data/models/highlight.dart';
 import 'package:tawaj/app/modules/home/controllers/home_controller.dart';
 import 'package:tawaj/app/routes/app_pages.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:tawaj/app/data/constants/linkType.dart' as LinkTypeConstants;
+import 'package:tawaj/app/data/constants/constants.dart' as constans;
 import 'package:get/get.dart';
 
 class Highlight extends GetView<HomeController> {
@@ -113,9 +111,9 @@ class Highlight extends GetView<HomeController> {
 }
 
 _launchURL(String url, String linkType) async {
-  if (linkType == LinkTypeConstants.ARTICLE_LINK_TYPE) {
+  if (linkType == constans.ARTICLE_LINK_TYPE) {
     Get.toNamed(Routes.ARTICLE, arguments: url);
-  }else if(linkType == LinkTypeConstants.CONTENT_LINK_TYPE){
+  }else if(linkType == constans.CONTENT_LINK_TYPE){
     Get.toNamed(Routes.CONTENT, arguments: int.parse(url));
   }else{
     Get.toNamed(Routes.BUTTON_PAGES, arguments: int.parse(url));

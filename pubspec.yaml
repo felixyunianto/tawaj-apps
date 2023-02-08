@@ -17,6 +17,8 @@ dependencies:
   carousel_slider: ^4.2.1
   url_launcher: ^6.1.9
   webview_flutter: ^3.0.0
+  arabic_numbers: ^1.0.0
+  flutter_switch: ^0.3.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

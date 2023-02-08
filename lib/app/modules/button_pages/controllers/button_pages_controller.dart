@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:tawaj/app/data/models/button_page.dart';
+import 'package:tawaj/app/data/constants/constants.dart' as constants;
 
 class ButtonPagesController extends GetxController {
   var title = "".obs;
@@ -14,7 +15,7 @@ class ButtonPagesController extends GetxController {
 
   Future<List<ButtonPage>> getButtonPages(String id) async {
     
-    Uri url = Uri.parse("http://localhost:8000/api/button-pages/${id}");
+    Uri url = Uri.parse("${constants.BASE_URL_API}/api/button-pages/${id}");
     var res = await http.get(url);
     
 

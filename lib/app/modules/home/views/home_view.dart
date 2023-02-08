@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:tawaj/app/data/models/sort_model.dart';
+import 'package:tawaj/app/modules/home/components/big_button.dart';
 import 'package:tawaj/app/modules/home/components/header.dart';
 import 'package:tawaj/app/modules/home/components/highlight.dart';
 import 'package:tawaj/app/routes/app_pages.dart';
@@ -101,65 +102,10 @@ class HomeView extends GetView<HomeController> {
                           indexSort: index,
                         )
                       : sort.code == "BIG_BUTTON"
-                          ? Container(
+                          ? BigButton(indexSort: index)
+                          : Container(
                               margin:
                                   EdgeInsets.only(bottom: index == 1 ? 24 : 0),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: index == 1 ? 3.0 : 0,
-                                    color: Color(0xffF5F5F5)),
-                              )),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 0, 16, 24),
-                                child: SizedBox(
-                                  height: 160,
-                                  child: GridView(
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 4,
-                                      ),
-                                      children: List.generate(8, (index) {
-                                        return Column(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                Get.toNamed(Routes.CONTENT, arguments: 1);
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: Color(0xff6D9773),
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                                height: 56,
-                                                width: 56,
-                                                child: const Icon(
-                                                  Icons.mosque_outlined,
-                                                  color: Color(0xff6D9773),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 2,
-                                            ),
-                                            const Text("Tawajjahut",
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                ))
-                                          ],
-                                        );
-                                      })),
-                                ),
-                              ),
-                            )
-                          : Container(
-                              margin: EdgeInsets.only(
-                                  bottom: index == 1 ? 24 : 0),
                               decoration: BoxDecoration(
                                   border: Border(
                                 bottom: BorderSide(
