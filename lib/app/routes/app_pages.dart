@@ -2,16 +2,26 @@ import 'package:get/get.dart';
 
 import '../modules/article/bindings/article_binding.dart';
 import '../modules/article/views/article_view.dart';
+import '../modules/big_button_option/bindings/big_button_option_binding.dart';
+import '../modules/big_button_option/views/big_button_option_view.dart';
 import '../modules/button_pages/bindings/button_pages_binding.dart';
 import '../modules/button_pages/views/button_pages_view.dart';
 import '../modules/content/bindings/content_binding.dart';
 import '../modules/content/views/content_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/layout/bindings/layout_binding.dart';
 import '../modules/layout/views/layout_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/option_sign/bindings/option_sign_binding.dart';
+import '../modules/option_sign/views/option_sign_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/register/bindings/register_binding.dart';
+import '../modules/register/views/register_view.dart';
 import '../modules/splach_screen/bindings/splach_screen_binding.dart';
 import '../modules/splach_screen/views/splach_screen_view.dart';
 
@@ -57,6 +67,31 @@ class AppPages {
       name: _Paths.CONTENT,
       page: () => ContentView(),
       binding: ContentBinding(),
+    ),
+    GetPage(
+      name: _Paths.BIG_BUTTON_OPTION,
+      page: () => const BigButtonOptionView(),
+      binding: BigButtonOptionBinding(),
+    ),
+    GetPage(
+      name: _Paths.OPTION_SIGN,
+      page: () => const OptionSignView(),
+      binding: OptionSignBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => const EditProfileView(),
+      binding: EditProfileBinding(),
     ),
   ];
 }

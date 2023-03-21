@@ -21,7 +21,7 @@ class BigButtonModel {
     String? title;
     String? linkType;
     String? link;
-    String? isShowed;
+    dynamic isShowed;
     DateTime? createdAt;
     DateTime? updatedAt;
 

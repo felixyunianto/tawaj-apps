@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:tawaj/app/data/models/sort_model.dart';
 import 'package:tawaj/app/modules/home/components/big_button.dart';
+import 'package:tawaj/app/modules/home/components/big_tab.dart';
 import 'package:tawaj/app/modules/home/components/header.dart';
 import 'package:tawaj/app/modules/home/components/highlight.dart';
 import 'package:tawaj/app/routes/app_pages.dart';
@@ -78,7 +79,7 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 24),
+        margin: const EdgeInsets.only(top: 24, bottom: 10),
         child: FutureBuilder<List<Sort>>(
             future: controller.getSort(),
             builder: (context, snapshot) {
@@ -88,10 +89,11 @@ class HomeView extends GetView<HomeController> {
                 );
               }
               if (!snapshot.hasData) {
-                return Center(child: const Text("Tidk ada data"));
+                return const Center(child: const Text("Tidk ada data"));
               }
 
               return ListView.builder(
+                physics: ClampingScrollPhysics(),
                 itemCount: snapshot.data!.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -104,82 +106,8 @@ class HomeView extends GetView<HomeController> {
                       : sort.code == "BIG_BUTTON"
                           ? BigButton(indexSort: index)
                           : Container(
-                              margin:
-                                  EdgeInsets.only(bottom: index == 1 ? 24 : 0),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: index == 1 ? 3.0 : 0,
-                                    color: Color(0xffF5F5F5)),
-                              )),
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                margin: EdgeInsets.fromLTRB(16, 0, 16, 24),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: const Color(0xff0C3B2E)),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            "Donasi Pengembangan Rumah Tahfidz Bersama Palapa (63,2%)",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 2,
-                                          ),
-                                          Text(
-                                            "Berkontribusi bersama penghafal Al-Quran di daerah Baker Street",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                      height: 24,
-                                      child: TextButton(
-                                          style: ButtonStyle(
-                                              padding:
-                                                  MaterialStateProperty.all(
-                                                      const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 8,
-                                                          vertical: 2)),
-                                              backgroundColor:
-                                                  MaterialStateProperty.all<
-                                                      Color>(
-                                                const Color(0xffFFBA00),
-                                              ),
-                                              shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                              ))),
-                                          onPressed: () {},
-                                          child: const Text(
-                                            "Klik disini",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.black),
-                                          )),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
+                            child: BigTab(),
+                          );
                 },
               );
             }),

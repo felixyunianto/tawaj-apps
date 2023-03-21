@@ -39,6 +39,7 @@ class BigButton extends GetView<HomeController> {
               child: SizedBox(
                 height: 160,
                 child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                     itemCount: big_buttons.length + 1,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -50,14 +51,12 @@ class BigButton extends GetView<HomeController> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                controller.redirectClick(
-                                    big_buttons[index].link!,
-                                    big_buttons[index].linkType!);
+                                Get.toNamed(Routes.BIG_BUTTON_OPTION);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Color(0xff6D9773),
+                                      color: const Color(0xff6D9773),
                                       width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(12)),

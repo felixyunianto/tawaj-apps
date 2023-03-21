@@ -25,8 +25,12 @@ class Highlight extends GetView<HomeController> {
               child: CircularProgressIndicator(),
             );
           }
-          if (!snapshot.hasData) {
-            return Center(child: const Text("Tidak ada data"));
+          print(snapshot.data!.length);
+          if (snapshot.data!.length == 0) {
+            return Container(
+              height: 177,
+              child: Center(child: Text("Tidak ada data")),
+            );
           }
 
           List<HighlightModel> highlights = snapshot.data!;

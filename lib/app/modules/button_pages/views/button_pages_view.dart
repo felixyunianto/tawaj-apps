@@ -16,11 +16,11 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
     return Scaffold(
         appBar: AppBar(
           title: Obx((() => Text(
-          controller.title.value,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-        ))),
-        centerTitle: true,
-        backgroundColor: Color(0xff0C3A2D),
+                controller.title.value,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ))),
+          centerTitle: true,
+          backgroundColor: Color(0xff0C3A2D),
         ),
         body: Container(
           padding: const EdgeInsets.all(24),
@@ -40,7 +40,7 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
                 child: Container(
                   height: size.height,
                   child: ListView.builder(
-                    itemCount: 1,
+                    itemCount: snapshot.data?.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       ButtonPage buttonPages = snapshot.data![index];
@@ -49,10 +49,16 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              buttonPages.title,
-                              style: const TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            GestureDetector(
+                              onTap: () {
+                                controller.redirectClick(
+                                    buttonPages.link, buttonPages.linkType);
+                              },
+                              child: Text(
+                                buttonPages.title,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,8 +67,8 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
                                 for (int i = 0; i < child.length; i++)
                                   if (child[i].children!.isNotEmpty)
                                     Container(
-                                      padding:
-                                          EdgeInsets.only(top: 24, left: 12),
+                                      padding: const EdgeInsets.only(
+                                          top: 24, left: 12),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -77,14 +83,21 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
                                               l < child[i].children!.length;
                                               l++)
                                             Container(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   top: 12, left: 12),
-                                              child: Text(
-                                                child[i].children![l].title,
-                                                style: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.normal),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  controller.redirectClick(
+                                                      child[i].link,
+                                                      child[i].linkType);
+                                                },
+                                                child: Text(
+                                                  child[i].children![l].title,
+                                                  style: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                         ],
@@ -94,12 +107,18 @@ class ButtonPagesView extends GetView<ButtonPagesController> {
                                     Container(
                                       padding: const EdgeInsets.only(
                                           top: 24, left: 12),
-                                      child: Text(
-                                        child[i].title,
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            controller.redirectClick(
+                                                child[i].link,
+                                                child[i].linkType);
+                                          },
+                                          child: Text(
+                                            child[i].title,
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          )),
                                     )
                               ],
                             )

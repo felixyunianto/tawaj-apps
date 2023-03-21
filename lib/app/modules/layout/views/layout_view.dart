@@ -12,25 +12,24 @@ class LayoutView extends StatelessWidget {
   const LayoutView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
     return GetBuilder<LayoutController>(builder: (controller) {
       return Scaffold(
-        appBar : AppBar(
+        appBar: AppBar(
           backgroundColor: Color(0xff0C3B2E),
           toolbarHeight: 0,
           elevation: 0,
         ),
-        body: SafeArea(
+        body: Container(
           child: IndexedStack(
             index: controller.tabIndex,
-            children: [HomeView(), ArticleView(), ProfileView()],
+            children: [const HomeView(), ArticleView(), ProfileView()],
           ),
         ),
         bottomNavigationBar: FloatingNavbar(
           borderRadius: 12,
-          margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-          backgroundColor: Color(0xff0B392C),
-          unselectedItemColor: Color(0xffA5A5A5),
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          backgroundColor: const Color(0xff0B392C),
+          unselectedItemColor: const Color(0xffA5A5A5),
           selectedItemColor: Colors.white,
           onTap: controller.changeTabIndex,
           currentIndex: controller.tabIndex,

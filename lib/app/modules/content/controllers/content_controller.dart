@@ -7,14 +7,20 @@ import 'package:tawaj/app/data/constants/constants.dart' as constants;
 
 class ContentController extends GetxController {
   var title = "".obs;
-  var statusToggle = false.obs;
+  var statusToggleLatin = false.obs;
+  var statusToggleIndo = false.obs;
 
   void changeTitleAppBar(String text) {
     title.value = text;
   }
 
-  void changeStatusToggle(bool status){
-    statusToggle.value = status;
+  void changeStatusToggleLatin(bool status){
+    statusToggleLatin.value = status;
+    update();
+  }
+
+  void changeStatusToggleIndo(bool status){
+    statusToggleIndo.value = status;
     update();
   }
 

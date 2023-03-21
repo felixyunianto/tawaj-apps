@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../controllers/article_controller.dart';
 
 class ArticleView extends GetView<ArticleController> {
-  final String? urlPage = Get.arguments;
+  final String? urlPage = Get.arguments.runtimeType == int ? Get.arguments.toString() : Get.arguments;
 
   ArticleView({Key? key}) : super(key: key);
   @override
