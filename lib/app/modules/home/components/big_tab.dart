@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:tawaj/app/data/models/big_tab.dart';
 import 'package:tawaj/app/data/models/sort_model.dart';
 import 'package:tawaj/app/modules/home/controllers/home_controller.dart';
+import 'package:tawaj/app/data/constants/constants.dart' as constans;
 
 class BigTab extends GetView<HomeController> {
   const BigTab({
@@ -21,10 +22,10 @@ class BigTab extends GetView<HomeController> {
             child: CircularProgressIndicator(),
           );
         }
-        if (snapshot.data!.length == 0) {
+        if (snapshot.data!.isEmpty) {
           return Container(
               height: 190,
-              child: Center(child: Text("Tidak ada data")),
+              child: const Center(child: Text("Tidak ada data")),
             );
         }
 
@@ -149,7 +150,7 @@ class BigTab extends GetView<HomeController> {
                             child: Row(
                               children: [
                                 Image(
-                                  image: NetworkImage(bigTab.image!),
+                                  image: NetworkImage("${constans.BASE_URL_API}${bigTab.image}" ?? "http://cdn.onlinewebfonts.com/svg/img_98811.png"),
                                   height: 32,
                                 ),
                                 const SizedBox(

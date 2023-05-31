@@ -10,6 +10,7 @@ import '../controllers/layout_controller.dart';
 
 class LayoutView extends StatelessWidget {
   const LayoutView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LayoutController>(builder: (controller) {

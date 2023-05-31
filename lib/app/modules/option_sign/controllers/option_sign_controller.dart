@@ -19,7 +19,7 @@ class OptionSignController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    if(getStorage.read("isLogin")){
+    if(getStorage.read("isLogin") !=null){
       Get.offAllNamed(Routes.LAYOUT);
     }
   }

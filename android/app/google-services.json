@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "545487608935",
+    "project_id": "alquran-test-a4e27",
+    "storage_bucket": "alquran-test-a4e27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545487608935:android:06e21847db0ec6d08048c2",
+        "android_client_info": {
+          "package_name": "com.example.tawaj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545487608935-1889vaeus3hodvv83e1m1qcnsb71foct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB67G8a3TvqSs0A6MJrN43FQDRT80WOsL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545487608935-1889vaeus3hodvv83e1m1qcnsb71foct.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "545487608935-6cpab1039knjnkl5tl6jrktdqphr30a8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tawaj"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

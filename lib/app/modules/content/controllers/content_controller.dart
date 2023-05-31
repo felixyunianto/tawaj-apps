@@ -14,12 +14,12 @@ class ContentController extends GetxController {
     title.value = text;
   }
 
-  void changeStatusToggleLatin(bool status){
+  void changeStatusToggleLatin(bool status) {
     statusToggleLatin.value = status;
     update();
   }
 
-  void changeStatusToggleIndo(bool status){
+  void changeStatusToggleIndo(bool status) {
     statusToggleIndo.value = status;
     update();
   }
@@ -28,8 +28,9 @@ class ContentController extends GetxController {
     Uri uri = Uri.parse("${constants.BASE_URL_API}/api/content/${id}");
     var res = await http.get(uri);
 
-    Map<String, dynamic> data = (json.decode(res.body) as Map<String,dynamic>)["data"];
-    changeTitleAppBar(Content.fromJson(data).titleArab);
+    Map<String, dynamic> data =
+        (json.decode(res.body) as Map<String, dynamic>)["data"];
+    changeTitleAppBar(Content.fromJson(data).titleArab ?? Content.fromJson(data).titleIndo);
     update();
 
     return Content.fromJson(data);

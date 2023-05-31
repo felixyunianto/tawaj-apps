@@ -16,12 +16,12 @@ class Content {
     });
 
     String titleIndo;
-    String titleArab;
+    String? titleArab;
     List<ContentElement> content;
 
     factory Content.fromJson(Map<String, dynamic> json) => Content(
         titleIndo: json["title_indo"],
-        titleArab: json["title_arab"],
+        titleArab: json["title_arab"] != null ? json['title_arab'] : null,
         content: List<ContentElement>.from(json["content"].map((x) => ContentElement.fromJson(x))),
     );
 

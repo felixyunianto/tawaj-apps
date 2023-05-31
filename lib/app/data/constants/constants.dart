@@ -1,5 +1,5 @@
-const String BASE_URL_API = 'http://localhost:8000';
-// const String BASE_URL_API = 'http://www.bukungaji.koneksiku.my.id';
+// const String BASE_URL_API = 'http://10.0.2.2:8000';
+const String BASE_URL_API = 'http://www.bukungaji.koneksiku.my.id';
 
 //LINK TYPE
 const String ARTICLE_LINK_TYPE = "article";

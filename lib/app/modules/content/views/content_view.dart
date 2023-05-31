@@ -153,7 +153,7 @@ class ContentView extends GetView<ContentController> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
                               width: 29.0,
@@ -182,11 +182,11 @@ class ContentView extends GetView<ContentController> {
                             ),
                             SizedBox(width: 12,),
                             Flexible(
-                              child: Text(contentElement?.arab ?? "Error",
+                              child: Text(contentElement?.arab ?? "",
                                   textAlign: TextAlign.right,
                                   style: const TextStyle(
                                     fontFamily: 'ScheherazadeNew',
-                                    fontSize: 14,
+                                    fontSize: 18,
                                   )),
                             )
                           ],

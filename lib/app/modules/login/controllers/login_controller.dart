@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -26,17 +27,6 @@ class LoginController extends GetxController {
   }
 
   String? emailValidator(String? value) {
-    var validEmail = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(value!);
-    if (value == "") {
-      return "Harus diisi";
-    }
-
-    if (!validEmail) {
-      return "Format email salah";
-    }
-
     return null;
   }
 
@@ -73,8 +63,12 @@ class LoginController extends GetxController {
     var response = json.decode(res.body) as Map<String, dynamic>;
 
     if (res.statusCode == 200) {
+      var token = await FirebaseMessaging.instance.getToken();
+
       Map<String, dynamic> data =
           (json.decode(res.body) as Map<String, dynamic>)["data"];
+      var user = data['user'];
+      await saveToken(token, user['id'].toString());
       getStorage.write("user", data['user']);
       getStorage.write("token", data['token']);
       getStorage.write('isLogin', true);
@@ -83,6 +77,19 @@ class LoginController extends GetxController {
     }
 
     return false;
+  }
+
+  Future<bool> saveToken(String? token, String id) async {
+    Uri url = Uri.parse("${constants.BASE_URL_API}/api/save-token/${id}");
+    var res = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{"token": token!}));
+
+    var response = json.decode(res.body) as Map<String, dynamic>;
+
+    return true;
   }
 
   @override

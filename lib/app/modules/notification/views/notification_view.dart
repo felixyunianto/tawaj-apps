@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 import 'package:get/get.dart';
-import 'package:http/http.dart';
-import 'package:tawaj/app/data/models/big_button.dart';
+import 'package:tawaj/app/data/models/notification.dart';
 
-import '../controllers/big_button_option_controller.dart';
+import '../controllers/notification_controller.dart';
+
 import 'package:tawaj/app/data/constants/constants.dart' as constans;
 
-class BigButtonOptionView extends GetView<BigButtonOptionController> {
-  const BigButtonOptionView({Key? key}) : super(key: key);
+class NotificationView extends GetView<NotificationController> {
+  const NotificationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,7 @@ class BigButtonOptionView extends GetView<BigButtonOptionController> {
             ),
             const Expanded(
               child: Text(
-                "List big button",
+                "Notifikasi",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
@@ -42,7 +41,7 @@ class BigButtonOptionView extends GetView<BigButtonOptionController> {
         backgroundColor: const Color(0xff0C3A2D),
       ),
       body: Container(
-        child: FutureBuilder<List<BigButtonModel>>(
+        child: FutureBuilder<List<NotificationModel>>(
           future: controller.getBigButton(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -57,19 +56,16 @@ class BigButtonOptionView extends GetView<BigButtonOptionController> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
-                BigButtonModel bigButton = snapshot.data![index];
+                NotificationModel bigButton = snapshot.data![index];
                 return GestureDetector(
-                  onTap: () {
-                    controller.redirectClick(bigButton.link!, bigButton.linkType!);
-                  },
                   child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                       color: index % 2 == 0 ? const Color.fromARGB(255, 224, 224, 224) : Colors.white,
                       child: Row(
                         children: [
                           Container(
-                            width: 60,
-                            height: 60,
+                            width: 45,
+                            height: 45,
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey, width: 1)),
@@ -81,7 +77,7 @@ class BigButtonOptionView extends GetView<BigButtonOptionController> {
                             width: 12,
                           ),
                           Container(
-                            height: 60,
+                            height: 45,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,11 +86,11 @@ class BigButtonOptionView extends GetView<BigButtonOptionController> {
                                   bigButton.title!.toUpperCase(),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18
+                                    fontSize: 14
                                   ),
                                 ),
                                 Text(
-                                  bigButton.isShowed == "1" || bigButton.isShowed == 1 ? "Sedang Aktif" : "Sedang tidak aktif",
+                                  bigButton.text ?? "",
                                   style: const TextStyle(
                                     fontSize: 12
                                   ),

@@ -14,7 +14,7 @@ class EditProfileController extends GetxController {
   //TODO: Implement EditProfileController
   final _layoutController = Get.put(LayoutController());
   final getStorage = GetStorage();
-  late User userData = {} as User;
+  final namePerson  = "".obs;
 
   final loginFormKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -32,6 +32,7 @@ class EditProfileController extends GetxController {
 
   @override
   void onReady() {
+    getProfile(getStorage.read('user')["id"].toString());
     super.onReady();
   }
 
@@ -50,7 +51,7 @@ class EditProfileController extends GetxController {
     return "";
   }
 
-  Future<User?> getProfile(String id) async {
+  void getProfile(String id) async {
     Uri uri = Uri.parse("${constants.BASE_URL_API}/api/profile/${id}");
     var res = await http.get(uri, headers: {
       "Authorization": getStorage.read('token') != null
@@ -70,9 +71,9 @@ class EditProfileController extends GetxController {
         emailController.text = data['email'];
         usernameController.text = data['username'];
         whatsappController.text = data['whatsapp'];
+        namePerson.value = data['name'] ;
         update();
-
-        return User.fromJson(data);
+        
       }
     }
   }
@@ -86,12 +87,6 @@ class EditProfileController extends GetxController {
 
   void editProfile() {
     if (loginFormKey.currentState!.validate()) {
-      print(nameController.text);
-      print(emailController.text);
-      print(usernameController.text);
-      print(whatsappController.text);
-      print(passwordController.text);
-      print(confirmationPasswordController.text);
       var payload = {
         "name": nameController.text,
         "email": emailController.text,
@@ -106,7 +101,6 @@ class EditProfileController extends GetxController {
   }
 
   void postEditProfile(Map<String, dynamic> payload) async {
-    print(payload);
     Uri uri = Uri.parse(
         "${constants.BASE_URL_API}/api/edit-profile/${getStorage.read('user')['id']}");
 

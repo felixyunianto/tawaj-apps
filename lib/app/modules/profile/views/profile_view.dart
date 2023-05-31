@@ -102,6 +102,9 @@ class ProfileView extends GetView<ProfileController> {
                         height: 20,
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.INFORMATION);
+                        },
                         child: Row(
                           children: const [
                             Icon(Icons.info, size: 16),
@@ -119,6 +122,9 @@ class ProfileView extends GetView<ProfileController> {
                         height: 20,
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.NOTIFICATION);
+                        },
                         child: Container(
                           child: Row(
                             children: const [

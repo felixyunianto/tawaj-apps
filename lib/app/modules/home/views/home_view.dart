@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -24,42 +26,41 @@ class HomeView extends GetView<HomeController> {
         titleSpacing: 8,
         title: Padding(
           padding: const EdgeInsets.only(left: 8, bottom: 8, top: 8),
-          child: SizedBox(
-            height: 36,
-            child: TextFormField(
-              style: const TextStyle(fontSize: 12),
-              decoration: const InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.zero,
-                prefixIcon: Icon(
+          child: GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.SEARCH);
+            },
+            child: Container(
+              alignment: Alignment.centerLeft,
+              width: double.infinity,
+              height: 36,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Icon(
                   Icons.search,
                   color: Color(0xff808080),
                 ),
-                prefixIconConstraints:
-                    BoxConstraints(minWidth: 36, minHeight: 36),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(90.0)),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                hintStyle: TextStyle(fontSize: 12),
-                labelStyle: TextStyle(fontSize: 12),
-                helperStyle: TextStyle(fontSize: 12),
               ),
             ),
           ),
         ),
         backgroundColor: const Color(0xff0C3B2E),
         actions: [
-          CircleAvatar(
-              backgroundColor: Colors.white,
-              child: IconButton(
-                  icon: const Icon(
-                    Icons.notifications_outlined,
-                    color: Color(0xff0C3B2E),
-                  ),
-                  onPressed: () {})),
+          Visibility(
+            visible: controller.getStorage.read("isLogin") != null ? true : false,
+            child: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                    icon: const Icon(
+                      Icons.notifications_outlined,
+                      color: Color(0xff0C3B2E),
+                    ),
+                    onPressed: () {
+                      controller.redirectNotification();
+                    })),
+          ),
           const SizedBox(
             width: 8,
           ),
@@ -106,8 +107,8 @@ class HomeView extends GetView<HomeController> {
                       : sort.code == "BIG_BUTTON"
                           ? BigButton(indexSort: index)
                           : Container(
-                            child: BigTab(),
-                          );
+                              child: BigTab(),
+                            );
                 },
               );
             }),

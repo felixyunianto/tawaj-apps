@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tawaj/app/data/models/big_button.dart';
 import 'package:tawaj/app/modules/home/controllers/home_controller.dart';
 import 'package:tawaj/app/routes/app_pages.dart';
+import 'package:tawaj/app/data/constants/constants.dart' as constans;
 
 class BigButton extends GetView<HomeController> {
   final int indexSort;
@@ -101,7 +102,7 @@ class BigButton extends GetView<HomeController> {
                                 width: 36,
                                 child: ClipRRect(
                                   child: Image.network(
-                                    big_buttons[index].image!,
+                                    big_buttons[index].image != null ? "${constans.BASE_URL_API}${ big_buttons[index].image}"  : "http://cdn.onlinewebfonts.com/svg/img_98811.png",
                                     height: 36,
                                     width: 36,
                                     fit: BoxFit.fill,

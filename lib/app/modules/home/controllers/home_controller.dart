@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:tawaj/app/data/models/big_button.dart';
 import 'package:tawaj/app/data/models/big_tab.dart';
@@ -11,6 +12,9 @@ import 'package:tawaj/app/data/constants/constants.dart' as constants;
 import 'package:tawaj/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
+  final getStorage = GetStorage();
+
+  
   Future<List<Sort>> getSort() async {
     Uri url = Uri.parse("${constants.BASE_URL_API}/api/home");
     var res = await http.get(url);
@@ -58,6 +62,10 @@ class HomeController extends GetxController {
     } else {
       Get.toNamed(Routes.BUTTON_PAGES, arguments: int.parse(url));
     }
+  }
+
+  void redirectNotification() {
+    Get.toNamed(Routes.NOTIFICATION);
   }
 
   Future<List<BigTabModel>> getBigTabs() async {

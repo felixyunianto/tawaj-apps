@@ -25,7 +25,6 @@ class Highlight extends GetView<HomeController> {
               child: CircularProgressIndicator(),
             );
           }
-          print(snapshot.data!.length);
           if (snapshot.data!.length == 0) {
             return Container(
               height: 177,
@@ -57,7 +56,7 @@ class Highlight extends GetView<HomeController> {
                           borderRadius: BorderRadius.circular(16),
                           color: Colors.red,
                           image: DecorationImage(
-                            image: NetworkImage(item.images),
+                            image: NetworkImage("${constans.BASE_URL_API}${item.images}"),
                             fit: BoxFit.cover,
                           ),
                         ),
